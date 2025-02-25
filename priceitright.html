@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Matching Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Proxima Soft', sans-serif;
+        }
+
+        body {
+            background-color: #FEFFE2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .individual {
+            margin: 130px;
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #745780;
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        .product-name {
+            color: #745780;
+            font-size: 32px;
+            font-weight: lighter;
+            margin-bottom: 20px;
+        }
+
+        .product-image {
+            width: 500px;
+            height: 500px;
+            margin-bottom: 20px;
+        }
+        
+        .side-by-side {
+            display:flex;
+            flex-direction: row;
+        }
+
+        .img{
+            width:50%;
+        }
+
+        .options {
+            display:flex;
+            flex-direction: column;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .price-btn {
+            /* display: block; */
+            
+            width: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #745780;
+            color: white;
+            font-size: 32px;
+            padding: 32px;
+            border: none;
+            border-radius: 25px;
+            margin: 8px auto;
+            cursor: pointer;
+        }
+
+        #score-circle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #92B653;
+            color: white;
+            font-size: 36px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .price-btn:hover {
+        background-color: #543d61;
+        }
+
+        .correct {
+        background-color: green !important;
+        color: white !important;
+        }
+
+        .incorrect {
+            background-color: rgb(188, 4, 4) !important;
+            color: white !important;
+        }
+
+        .game-over-container {
+        text-align: center;
+        padding: 50px;
+        }
+
+        .game-over-title {
+        font-size: 96px;
+        position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .score-label {
+        font-size: 36px;
+        font-weight: bold;
+        color: #745780;
+        margin-top: 160px;
+        }
+
+        .score {
+        font-size: 48px;
+        font-weight: bold;
+        color: #92B653; 
+        }
+
+        .play-again-button {
+            margin-top: 280px;
+            width: 380px;
+            padding: 32px;
+            font-size: 48px;
+            background-color: #92B653;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="score-circle">0</div>
+    
+    <div class="individual"> 
+        <div class="question">
+            <h1>Guess the price for this beauty product</h1>
+            <p class="product-name">(Clarins Double Serum Age Defying Concentrate - 50ml)</p>
+        </div>
+    
+        <div class="side-by-side">
+            <img class="product-image" src="guess the price photos /Clarins Double Serum 50 ml.png" alt="Clarins Double Serum Age Defying Concentrate - 50ml">
+        
+            <div class="options">
+            <button class="price-btn" data-correct="true">$135</button>
+            <button class="price-btn">$215</button>
+            <button class="price-btn">$58</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="individual"> 
+        <div class="question">
+            <h1>Guess the price for this beauty product</h1>
+            <p class="product-name">(Charlotte Tilbury Airbrush Flawless Longwear Foundation)</p>
+        </div>
+    
+        <div class="side-by-side">
+            <img class="product-image" src="guess the price photos /charlotte tilbury foundation.png" alt="Charlotte Tilbury Airbrush Flawless Longwear Foundation">
+        
+            <div class="options">
+            <button class="price-btn">$42</button>
+            <button class="price-btn">$37</button>
+            <button class="price-btn" data-correct="true">$49</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="individual"> 
+        <div class="question">
+            <h1>Guess the price for this beauty product</h1>
+            <p class="product-name">(Clinique Cheek Pop Blush)</p>
+        </div>
+    
+        <div class="side-by-side">
+            <img class="product-image" src="guess the price photos /clinique cheek pop blush.png" alt="Clinique Cheek Pop Blush">
+        
+            <div class="options">
+            <button class="price-btn">$25</button>
+            <button class="price-btn">$15</button>
+            <button class="price-btn" data-correct="true">$30</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="individual"> 
+        <div class="question">
+            <h1>Guess the price for this beauty product</h1>
+            <p class="product-name">(Fenty Beauty Gloss Bomb Heat Universal Lip Luminizer + Plumper)</p>
+        </div>
+    
+        <div class="side-by-side">
+            <img class="product-image" src="guess the price photos /Fenty beauty gloss bomb.png" alt="Fenty Beauty Gloss Bomb Heat Universal Lip Luminizer + Plumper">
+        
+            <div class="options">
+            <button class="price-btn">$32</button>
+            <button class="price-btn" data-correct="true">$26</button>
+            <button class="price-btn">$12</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="individual"> 
+        <div class="question">
+            <h1>Guess the price for this beauty product</h1>
+            <p class="product-name">(Tatcha The Silk Sunscreen SPF 50 Weightless Mineral Sunscreen)</p>
+        </div>
+    
+        <div class="side-by-side">
+            <img class="product-image" src="guess the price photos /tatcha mineral sunscreen.png" alt="Tatcha The Silk Sunscreen SPF 50 Weightless Mineral Sunscreen">
+        
+            <div class="options">
+            <button class="price-btn">$37</button>
+            <button class="price-btn" data-correct="true">$64</button>
+            <button class="price-btn">$50</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="individual"> 
+        <div class="question">
+            <h1>Guess the price for this beauty product</h1>
+            <p class="product-name">(Rabanne Mini Eyeshadow Palette Duo)</p>
+        </div>
+    
+        <div class="side-by-side">
+            <img class="product-image" src="guess the price photos /rabanne eyeshadow duo.png" alt="Rabanne Mini Eyeshadow Palette Duo">
+        
+            <div class="options">
+            <button class="price-btn" data-correct="true">$25</button>
+            <button class="price-btn">$8</button>
+            <button class="price-btn">$18</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="individual"> 
+        <div class="question">
+            <h1>Guess the price for this beauty product</h1>
+            <p class="product-name">(Divi Scalp Serum 30ml/1oz)</p>
+        </div>
+    
+        <div class="side-by-side">
+            <img class="product-image" src="guess the price photos /divi scalp serum.png" alt="Divi Scalp Serum 30ml/1oz">
+        
+            <div class="options">
+            <button class="price-btn">$22</button>
+            <button class="price-btn" data-correct="true">$48</button>
+            <button class="price-btn">$132</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="individual"> 
+        <div class="question">
+            <h1>Guess the price for this beauty product</h1>
+            <p class="product-name">(ILIA Perfecting Buff Brush)</p>
+        </div>
+    
+        <div class="side-by-side">
+            <img class="product-image" src="guess the price photos /ilia perfecting buff brush.png" alt="ILIA Perfecting Buff Brush">
+        
+            <div class="options">
+            <button class="price-btn" data-correct="true">$40</button>
+            <button class="price-btn">$10</button>
+            <button class="price-btn">$20</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="individual"> 
+        <div class="question">
+            <h1>Guess the price for this beauty product</h1>
+            <p class="product-name">(Drunk Elephant T.L.C. Sukari Babyfacial)</p>
+        </div>
+    
+        <div class="side-by-side">
+            <img class="product-image" src="guess the price photos /drunk elephant tlc babyfacial.png" alt="Drunk Elephant T.L.C. Sukari Babyfacial">
+        
+            <div class="options">
+            <button class="price-btn">$55</button>
+            <button class="price-btn">$21</button>
+            <button class="price-btn" data-correct="true">$80</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="individual"> 
+        <div class="question">
+            <h1>Guess the price for this beauty product</h1>
+            <p class="product-name">(OSEA Vagus Nerve Calming Oil)</p>
+        </div>
+    
+        <div class="side-by-side">
+            <img class="product-image" src="guess the price photos /osea nerve calming oil.png" alt="OSEA Vagus Nerve Calming Oil">
+        
+            <div class="options">
+            <button class="price-btn" data-correct="true">$48</button>
+            <button class="price-btn">$75</button>
+            <button class="price-btn">$23</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+let score = 0;
+let currentQuestionIndex = 0;
+
+const questions = document.querySelectorAll(".individual");
+const scoreCircle = document.getElementById("score-circle");
+
+// Hide all questions initially
+questions.forEach(q => q.style.display = "none");
+
+// Show only the first question
+questions[currentQuestionIndex].style.display = "block";
+
+// Function to update the score display
+function updateScore() {
+    scoreCircle.textContent = score;
+}
+
+// Function to handle answer selection
+function handleAnswer(event) {
+    const selectedButton = event.target;
+    const allButtons = selectedButton.parentElement.querySelectorAll(".price-btn");
+
+    // Disable all buttons to prevent multiple clicks
+    allButtons.forEach(button => button.disabled = true);
+
+    // Check if the selected answer is correct
+    if (selectedButton.dataset.correct === "true") {
+        selectedButton.classList.add("correct"); // Turns green if correct
+        score += 1;
+        updateScore();
+    } else {
+        selectedButton.classList.add("incorrect"); // Turns red if incorrect
+
+        // Highlight the correct answer in green
+        allButtons.forEach(button => {
+            if (button.dataset.correct === "true") {
+                button.classList.add("correct"); 
+            }
+        });
+    }
+
+    // Move to the next question after a short delay
+    setTimeout(() => {
+        questions[currentQuestionIndex].style.display = "none";
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.length) {
+        questions[currentQuestionIndex].style.display = "block";
+        } else {
+        document.body.innerHTML = `
+            <div class="game-over-container">
+                <h1 class="game-over-title">GAME OVER!</h1>
+                <p class="score-label">Final Score:</p>
+                <p class="score">${score} / ${questions.length}</p>
+                <button onclick="location.reload()" class="play-again-button">
+                    Play Again
+                </button>
+            </div>
+        `;
+}
+
+
+    }, 1000); // 1-second delay before switching questions
+}
+
+// Attach event listeners to all price buttons
+const buttons = document.querySelectorAll(".price-btn");
+buttons.forEach(button => button.addEventListener("click", handleAnswer));
+
+    </script>
+</body>
+</html>
